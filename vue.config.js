@@ -72,9 +72,11 @@ module.exports = defineConfig({
 
       // Get all products
       devServer.app.get('/products', (_, res) => {
+        console.log('Get Products')
         fetch(`${PRODUCT_SERVICE_URL}`)
           .then(response => response.json())
           .then(products => {
+            console.log(products);
             res.send(products)
           })
           .catch(error => {
@@ -85,6 +87,7 @@ module.exports = defineConfig({
 
       // Get a single product by id
       devServer.app.get('/product/:id', (_, res) => {
+        console.log('Get Product By Id')
         fetch(`${PRODUCT_SERVICE_URL}${_.params.id}`)
           .then(response => response.json())
           .then(products => {
@@ -109,7 +112,6 @@ module.exports = defineConfig({
         })
           .then(response => response.json())
           .then(product => {
-            console.log(product);
             res.send(product)
           })
           .catch(error => {
